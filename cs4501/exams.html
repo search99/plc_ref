@@ -1,0 +1,268 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>CS 4501 &mdash; Language Design and Implementation</title>
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/starter-template.css" rel="stylesheet">
+</head> 
+
+<body>
+
+
+<div class="container">
+<div class="starter-template">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" class="active" href="index.html">Language Design & Implementation</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li class="active"><a href="#">Home</a></li> --> 
+            <li><a href="lectures.html">Lectures</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Assignments <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="pa1.html">PA1 &mdash; Rosetta</a></li> 
+                  <li><a href="pa2.html">PA2 &mdash; Lexer</a></li> 
+                  <li><a href="pa3.html">PA3 &mdash; Parser</a></li> 
+                  <li><a href="pa4.html">PA4 &mdash; Semantic Analyzer</a></li> 
+                  <li><a href="pa5.html">PA5 &mdash; Interpreter</a></li> 
+                  <li class="divider"></li> 
+                   <li><a href="ca1.html">CA1 &mdash; Dead Code Elimination</a></li>
+                  <li><a href="ca2.html">CA2 &mdash; TAC Code Generator</a></li>
+                  <li><a href="ca3.html">CA3 &mdash; ASM Generator</a></li>
+                  <li><a href="ca4.html">CA4 &mdash; Compiler</a></li>
+                  <li><a href="ca5.html">CA5 &mdash; Optimizing Compiler</a></li>
+                  <li class="divider"></li>
+                 <li><a href="https://dijkstra.cs.virginia.edu/ldi-submit/index.html">Project Submission</a></li> 
+                </ul>
+            </li> 
+            <li class="active"><a href="exams.html">Exams</a></li>
+            <li><a href="cool.html">Cool</a></li>
+            <li><a href="legacy.html">Legacy</a></li>
+            <li><a href="https://piazza.com/class/ijen7n8b3bi1tc">Forum</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<h1>Overview</h1>
+
+<p>
+This course will have two midterm examinations and one final examination. 
+The final examination is cumulative. Review Sets are provided to help you
+stay on track and study for the examinations.
+</p> 
+
+<h1>Review Sets</h1> 
+
+<p>
+These Review Sets are not graded assignments. Instead, they serve as a
+structured system for students to evaluate their mastery of the material
+and to prepare for the written examinations. The instructor and the
+teaching assistants will be happy to go over Review Set answers during
+office hours.
+</p> 
+
+
+<ul>
+<li> <a href="rs/rs1.pdf">Review Set 1 &mdash; regular languages and finite
+automata</a> 
+<li> <a href="rs/rs2.pdf">Review Set 2 &mdash; context-free grammars</a> 
+<li> <a href="rs/rs3.pdf">Review Set 3 &mdash; grammars and Earley parsing</a> 
+<li> <a href="rs/rs4.pdf">Review Set 4 &mdash; type checking</a> 
+<li> <a href="rs/rs5.pdf">Review Set 5 &mdash; runtime organization and operational semantics</a> 
+<li> <a href="rs/rs6.pdf">Review Set 6 &mdash; optimization</a> 
+<li> <a href="rs/rs7.pdf">Review Set 7 &mdash; garbage collection and exceptions</a> 
+</ul> 
+<ul>
+<li> <a href="reading/midterm-pi.pdf">Midterm Pi &mdash; humorous "review" of
+major course topics</a> 
+</ul> 
+
+
+<p>
+The teaching assistants have been instructed <i>not</i> to answer
+open-ended "please do this review problem for me" questions. You must
+present evidence that you have tried the problem in some manner.
+</p> 
+
+
+
+<h1>Materials</h1> 
+
+<p>
+You are allowed to bring two paper-sides of notes (either one page, front and
+back or two fronts). You may laser-print them using some micro font if you
+like, but it may not really help you: you'll spend much of your time squinting
+and looking up information on your cheat sheet. 
+</p> 
+<p> 
+The exams are <i>not</i> open book. You may not use electronic devices
+of any kind. 
+</p> 
+
+<h1>Exam 1</h1> 
+
+<p>
+Exam 1 covers <i>all</i> material referenced in class or on the course
+website before the date of the exam (Thursday February 18th). Notably, that
+includes the Tuesday February 16th lecture, Review Sets 1 and 2, PA1
+through PA3, and all non-optional readings (including video "readings", etc.)
+associated with those days. 
+</p> 
+<p>
+<ul>
+<li> <a href="exam-1-2016.pdf">Exam 1 from LDI in 2016</a> &mdash; with
+answer key
+<li> <a href="exam-1-2015.pdf">Exam 1 from CS 4610 in 2015</a> &mdash; with answers for practice
+<li> <a href="exam-1-2015-blank.pdf">Exam 1 from CS 4610 in 2015</a> &mdash; blank for practice
+</ul> 
+</p> 
+<p>
+Reminder: LDI and Legacy grading students take exactly the same exam. 
+</p>
+
+<h1>Exam 2</h1> 
+
+<p>
+Exam 2 covers <i>all</i> material referenced in class or on the course
+website starting with Tue Feb 23 (Code Generation) 
+and ending Thu Apr 21 (Language Security). 
+Notably, that also includes PA4, PA5, Review Sets 3+, and all
+non-optional readings (including video "readings", etc.) associated with
+those days. 
+</p> 
+<p>
+<ul>
+<li> <a href="exam-2-2016.pdf">Exam 2 from LDI in 2016</a> &mdash; with
+answer key
+<li> <a href="exam-2-2015.pdf">Exam 2 from CS 4610 in 2015</a> &mdash; with answers for practice
+<li> <a href="exam-2-2015-blank.pdf">Exam 2 from CS 4610 in 2015</a> &mdash; blank for practice
+</ul> 
+</p> 
+<p>
+Reminder: LDI and Legacy grading students take exactly the same exam. 
+</p>
+
+<h1>The Written Final Examination</h1>
+
+<p>
+The Language Design written final exam is cumulative a take-home
+essay exam.  
+The final exam is open book. (In some semesters no written final
+examination is given. In such semesters student final grades are out of
+100-X
+points rather than 100; see the syllabus for the breakdown.)
+</p> 
+<p> 
+In general, all of the topics covered in the course (either in lecture, in
+the reviews sets, in the programming assignments <i>or</i> in the
+required reading) are fair game. The following list of topics is not
+necessarily exhaustive (although it is close); you are responsible for all
+of the material.
+<ul> 
+  <li> Big Topics (will be worth more points) 
+    <ul>
+      <li> Basic Blocks, Local Optimizations, Dataflow Analysis
+      <li> Context-Free Grammars
+      <li> Earley Parsing 
+      <li> Finite Automata
+      <li> Operational Semantics
+      <li> Security
+      <li> Type Checking, Typing Rules, Typing Judgments
+    </ul> 
+  <li> Average Topics
+    <ul>
+      <li> Automatic Memory Management
+      <li> Debuggers and Profilers
+      <li> Exceptions and Error Handling
+      <li> Lexical Analysis
+      <li> Linking, Loading and Shared Libraries
+      <li> Parsing, Derivations, Ambiguity
+      <li> Scoping
+    </ul> 
+  <li> Small Topics (will be worth fewer points)
+    <ul>
+      <li> Functional Programming 
+      <li> Game Theory 
+      <li> Multi-Language Projects
+      <li> Quantum Computing 
+    </ul>
+</ul> 
+<p>
+Within the large topics of Typing and Opsem, "basic questions" (e.g., "what
+is operational semantics?") will be worth proportionally more points than
+"advanced questions" (e.g., "give an opsem rule for this new pyscho
+<tt>for</tt> loop").
+</p> 
+<p> 
+The "big" topics won't necessarily be huge parts of the exam time-wise or
+space-wise, they'll just be worth more points.  For example, it's not clear
+that there are massive detailed questions we can ask about each such topic,
+but whatever we do ask will be weighted heavily. 
+</p> 
+
+<h1>Practice Exams</h1> 
+
+Here are some practice exams from other similar courses at other
+universities. These courses are not exactly the same as this one, so 
+these practice exams may not be indicative. 
+<ul>
+
+<li><a href="reading/cs164-sp06-midterm1.pdf">Berkeley CS 164 - Spring 2006 - Midterm 1</a> 
+<ul>
+<li><a href="reading/cs164-sp06-midterm1-soln.pdf">Berkeley CS 164 - Spring 2006 - Midterm 1 (Solutions)</a> 
+</ul>
+<li><a href="reading/cs164-sp04-midterm1.pdf">Berkeley CS 164 - Spring 2004 - Midterm 1</a> 
+<ul>
+<li><a href="reading/cs164-sp04-midterm1-soln.pdf">Berkeley CS 164 - Spring 2004 - Midterm 1 (Solutions)</a> 
+</ul> 
+<li><a href="reading/cs164-sp03-midterm1-soln.pdf">Berkeley CS 164 - Spring 2003 - Midterm 1 (Solutions)</a>
+<li><a href="reading/cs164-sp02-midterm1-soln.pdf">Berkeley CS 164 - Spring 2002 - Midterm 1 (Solutions)</a> 
+<li><a href="reading/cs164-sp01-midterm1-soln.pdf">Berkeley CS 164 - Spring 2001 - Midterm 1 (Solutions)</a> 
+<li><a href="reading/cs164-fa00-midterm1-soln.pdf">Berkeley CS 164 - Fall 2000 - Midterm 1 (Solutions)</a> 
+<li><a href="reading/cs164-sp00-midterm1-soln.pdf">Berkeley CS 164 - Spring 2000 - Midterm 1 (Solutions)</a> 
+</ul>
+
+<p> 
+
+<ul> 
+<li><a href="reading/cs164-sp06-midterm2-soln.pdf">Berkeley CS 164 - Spring 2006 - Midterm 2 (Solutions)</a> 
+<li><a href="reading/cs164-sp03-midterm2-soln.pdf">Berkeley CS 164 - Spring 2003 - Midterm 2 (Solutions)</a>
+<li><a href="reading/cs164-sp01-midterm2-soln.pdf">Berkeley CS 164 - Spring 2001 - Midterm 2 (Solutions)</a> 
+<li><a href="reading/cs164-fa00-midterm2-soln.pdf">Berkeley CS 164 - Fall 2000 - Midterm 2 (Solutions)</a> 
+</ul>
+
+<p> 
+
+<ul>
+<li> <a href="reading/berkeley-cs-164-old-final.pdf">Berkeley CS 164 -
+Spring 2005 - Final</a> 
+<li><a href="reading/cs164-sp00-final-soln.pdf">Berkeley CS 164 - Spring 2000 - Final (Solutions)</a> 
+<li><a href="reading/cs164-fa96-final-soln.pdf">Berkeley CS 164 - Fall 1996 - Final (Solutions)</a> 
+<li><a href="reading/cs164-fa95-final-soln.pdf">Berkeley CS 164 - Fall 1995 - Final (Solutions)</a>
+</ul>
+
+
+
+</ul> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body> 
+</html>
+

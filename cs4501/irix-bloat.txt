@@ -1,0 +1,613 @@
+From: da...@bedlam.asd.sgi.com (Tom Davis)
+Newsgroups: comp.sys.next.advocacy
+Subject: Re: and you thought NEXTSTEP was bad....
+Date: 25 Apr 1994 18:17:54 GMT
+Organization: Silicon Graphics, Inc.
+
+I am the author of the original memo below, which was intended for
+internal Silicon Graphics use only, and was not for anyone outside the
+company.  But since it has been leaked to the net, and is beginning to
+be used by competitor's sales people, I feel a response is required.
+
+I don't believe that these problems are unique to Silicon Graphics.
+From discussions with friends who are insiders in many different
+companies, I am certain that similar memos could be written about the
+software of each of our competitors.
+
+What I like about working for Silicon Graphics is that at least here,
+something is being done about it -- I worked for companies in the past
+where the response would have been to stick our heads in the sand in
+hopes that the problems would just fix themselves.  If I hadn't thought
+that the memo would catalyze some change here, I wouldn't have written
+it.
+
+The details appear as comments to my original article below.  Luckily,
+the article is 6 months old, and we have had a chance to make some
+significant progress.
+
+Typically, what happens is that each faster generation of hardware is
+followed by software that more than compensates for the increased
+speed, but as a result of this memo, Silicon Graphics has been able to
+skip one of the slowing software cycles, making, instead, a performance
+and quality based release.  The next release is going to be similar,
+and in the meantime, we get an extra hardware boost from the faster
+R4600 processors.
+
+  -- Tom Davis
+     Silicon Graphics
+
+--------
+
+x                        Software Usability II
+x                           October 5, 1993
+x                              Tom Davis
+x
+x Last May, I published my first report on software usability, which
+x Rocky Rhodes and I presented to at Tom Jermoluk's staff meeting (with
+x Ed, but without Tom).  Subsequently, I made it available to quite a few
+x other people.
+x
+x This sequel is to satisfy all those people who have urged me to bring
+x it up to date.  I begin with a summary; details follow.
+x
+x Please read at least the summary.
+x
+x     SUMMARY
+x
+x Release 5.1 is a disappointment.  Performance for common operations has
+x dropped 40% from 4.0.5, we shipped with 500 priority 1 and 2 bugs, and
+x a base Indy is much more sluggish than a Macintosh.  Disk space
+x requirements have increased dramatically.
+x
+x The primary cause is that we attempted far too much in too little
+x time.  Management would not cut features early, so we were forced to
+x make massive cuts in the final weeks of the release.
+x
+x What shall we do now?  Let's not look for scapegoats, but learn from
+x our mistakes and do better next time.
+x
+x A December release of 5.1.2 is too early to fix much -- we'll spend
+x much more time on the release process than fixing things.  Allow enough
+x time for a solid release so we don't get: 5.1.2.1, 5.1.2.2, 5.1.2.3, ...
+x
+x Let's decide ahead of time exactly what features are in 5.1.2.  If we
+x pick a reasonable set we'll avoid emergency feature cuts at the end.
+x
+x Nobody knows what's wrong -- opinions are as common as senior
+x engineers.  The software environment is so convoluted that at times it
+x seems to rival the US economy for complexity and unpredictability.  I
+x propose massive code walk-throughs and design reviews to analyze the
+x software.  We'll be forced to look closely at the code, and fresh
+x reviewers can provide fresh insights.
+x
+x For the long term, let's change the way we do things so that the
+x contents and scheduling of releases are better planned and executed.
+x Make sure marketing and engineering expectations are in agreement.
+x
+
+General comments:
+
+As a fairly direct result of this memo, SGI decided not to continue
+"business as usual" in software development.  The approach we took to
+the problem was the following:
+
+With the 4.0.5abcdefghi... fiasco, and the fact that the 5.* releases
+were still for specific machines, our developers were desperate for an
+all-platforms release.  We decided to make such a release relatively
+soon -- and 5.2 actually MRed in February.  The 5.2 release had two
+goals -- primarily, all-platform, and given that it went out in
+February, do as much performance-tuning and bug-fixing as time allowed.
+
+In that period, the performance on 16MB systems was essentially doubled,
+which improved performance on larger systems as well, but to a lesser
+degree.  Significant numbers of bugs were fixed as well.
+
+Some people hoped that a few quick fixes would bring back all the
+performance in 5.2, but a little investigation indicated that was a
+list of things to be done, and that another quality release would be
+required.
+
+The 5.3 release, not officially scheduled, but which should be MRed
+around October or November is that quality (performance and bug-fix)
+release.  We'll add a few new features, but they will be the exception
+rather than the rule.  The longer time before the 5.3 release should
+give us time to do a thorough job of solving our problems.
+
+For 5.3, there's also time to set up solid performance and bug-fixing
+goals, and these are already being discussed.
+
+And most important -- the worst problems were with 16 MB systems that
+paged their brains out.  They are better now, but not great.  But we
+don't sell them.  One of the 5.3 goals is to improve performance (or
+reduce sizes enough) that it will be acceptable on a 16 MB machine.
+
+x     INTRODUCTION
+x
+x We've addressed some of the problems presented in the original May
+x report, but not enough.  Most of the report's warnings and predictions
+x have come true in 5.1.  If we keep doing the exact same thing, we'll
+x keep getting the exact same results.
+x
+x I'm preparing this report in ASCII to make it widely available.  It's
+x easy to distribute via news and mail, and everyone can read it.
+x
+x An ASCII version of the May 12 report can be found in:
+x
+x     bedlam.asd:/usr/tmp/report.text
+x
+x The included quotations are not verbatim.  Although the wordings
+x are inexact, I believe they capture the spirit of the originals.
+x
+x     BLOAT UPDATE
+x
+x           "Do you want to be a bloat detective?  It's easy;
+x           just pick any executable.  There!  You found some!"
+x
+x               -- Rolf van Widenfelt
+x
+x In the May report, I listed a bunch of executable sizes, and pointed
+x out that they were unacceptable if we intended to run without serious
+x paging problems on a 16 megabyte system.  Between May and the 5.1
+x release, many have grown even larger.  IRIX went up from 4.8 megabytes
+x to 8.1 megabytes, and has a memory leak that causes it to grow.  Within
+x a week, my newly-booted 5.1 IRIX was larger than 13.8 megabytes -- a
+x big chunk of a 16 megabyte system.  It's wrong to require our users to
+x reboot every week.
+
+x There are too many daemons.  In a vanilla 5.1 installation with Toto,
+x there are 37 background processes.
+x
+x DSOs were supposed to reduce physical memory usage, but have had just
+x the opposite effect, and their indirection has reduced performance.
+x
+x Programs like Roger Chickering's "Bloatview" based on Wiltse
+x Carpenter's work make some problems obvious.  The news reader "xrn",
+x starts out small, but leaks memory so badly that within a week or so it
+x grows to 9 or 10 megabytes, along with plenty of other large programs.
+x But what's really embarrassing is that even the kernel leaks memory
+x that can't be recovered except by rebooting!
+x
+x Showcase grew from 3.2 megabytes to 4.0 megabytes, and the master and
+x status gizmos which are run by default occupy another 1.7 megabytes.
+x Much of this happened simply by recompiling under 5.1 -- not because of
+x additional code.
+x
+x The window system (Xsgi + 4Dwm) is up from 3.2 MB to 3.6 MB, and
+x the miscellaneous stuff has grown as well.  As I type now, I have the
+x default non-toto environment plus a single shell and a single text
+x editor, jot.  The total physical memory usage is 21.9 megabytes, and
+x only because I rebooted IRIX yesterday evening to reduce the kernel
+x size.  Luckily, I'm on a 32 megabyte system without Toto, or I'd be
+x swamped by paging.
+x
+x Much of the problem seems to be due to DSOs that load whole libraries
+x instead of individual routines.  Many SGI applications link with 20 or
+x so large DSOs, virtually guaranteeing enormous executables.
+x
+x In spite of the DSOs, large chunks of Motif programs remain unshared,
+x and duplicated in all Motif applications.
+x
+
+The kernel memory leaks are all fixed, and many of the important
+programs have been reduced in size.  For 5.2, 5 or 6 of our most
+heavily-used programs were subjected to close scrutiny to find out where
+the performance went, and many were significantly improved.
+
+A lot more work is planned for 5.3 to reduce the sizes of the
+executables.
+
+Work is continuing on the DSOs to split them up properly so that they
+don't all have to be loaded, and to improve their performance and
+start-up time.  We're working to make "quick-starting" happen more
+automatically.
+
+x     PERFORMANCE UPDATE
+x
+x           "Indy: an Indigo without the 'go'".
+x
+x               -- Mark Hughes (?)
+x
+x           "X and Motif are the reasons that UNIX deserves to die."
+x
+x               -- Larry Kaplan
+x
+x The performance story is just as bad.  I was tempted to write simply,
+x "Try to do some real work on a 16 megabyte Indy.  Case closed.", but
+x I'll include some details.
+x
+x In May, I listed some unacceptable Motif performance measurements.
+x Just before 5.1 MR, someone reran my tests and discovered that the
+x performance had gotten even worse.  Some effort was expended to tune
+x the software so that instead of being intolerable, it was back to
+x merely unacceptable performance.
+x
+x We no longer report benchmark results on our standard system.  The
+x benchmarks are not done with the DSO libraries; they are all compiled
+x non-DSO so that the performance in 5.1 has not declined too much.
+x
+x Before I upgraded from 4.0.5 to the MR version of 5.1, I ran some
+x timings of some everyday activities to see what would happen.  These
+x timings were all made with the wall clock, so they represent precisely
+x what our users will see.  I run a 32 megabyte R4000 Elan.
+x
+x     Test                  4.0.5                 5.1         % change
+x     ----                    -----                 ---         --------
+x
+x    C compile of a         25 sec              35 sec          40%
+x     small application
+x
+x    C++ compile of a       68 sec              105 sec         54%
+x     small application
+x
+x    Showcase startup,      13 sec              18 sec          38%
+x     May report file
+x
+x    Start a shell          <2 sec              ~3 sec          ~50%
+x
+x    Jot 2 MB file          <2 sec              ~3 sec          ~50%
+
+I don't think it's unusual to do benchmarks with non-standard compiler
+settings.  Both we and our competition have done so for a long time.  We
+do ship all the libraries, et cetera, necessary to duplicate these
+results so customers for whom speed is the only objective can pay the
+cost of larger executables in exchange for the added speed.
+
+Unfortunately, I can't re-run some of these tests, but 5.2 is definitely
+better than 5.1.
+
+x
+x What's most frightening about the 5.1 performance is that nobody knows
+x exactly where it went.  If you start asking around, you get plenty of
+x finger-pointing and theories, but few facts.  In the May report, I
+x proposed a "5% theory", which states that each little thing we add
+x (Motif, internationalization, drag-and-drop, DSOs, multiple fonts, and
+x so on) costs roughly 5% of the machine.  After 15 or 20 of these,
+x most of the performance is gone.
+x
+x Bloating by itself causes problems.  There's heavy paging, there's so
+x much code and it's so scattered that the cache may as well not be
+x there.  The window manager and X and Toto are so tangled that many
+x minor operations like moving the mouse or deleting a file wake up all
+x the processes on the machine, causing additional paging, and perhaps
+x graphics context swaps.
+x
+x But bloat isn't the whole story.  Rocky Rhodes recently ran a small
+x application on an Indy, and noticed that when he held the mouse button
+x down and slid it back and forth across the menu bar, the (small) pop-up
+x menus got as much as 25 seconds behind.  He submitted a bug, which was
+x dismissed as paging due to lack of memory.  But Rocky was running with
+x 160 megabytes of memory, so there was no paging.  The problem turned
+x out to be Motif code modified for the SGI look that is even more
+x sluggish than regular Motif.  Perhaps the problem is simply due to the
+x huge number of context swaps necessary for all the daemons we're
+x shipping.
+x
+x The complexity of our system software has surpassed the ability of
+x average SGI programmers to understand it.  And perhaps not just average
+x programmers.  Get a room full of 10 of our best software people, and
+x you'll get 10 different opinions of what's causing the lousy
+x performance and bloat.  What's wrong is that the software has simply
+x become too complicated for anyone to understand.
+x
+x     WHAT WENT WRONG IN 5.1?
+x
+x The one sentence answer is:  we bit off more than we could chew.  As a
+x company, we still don't understand how difficult software is.
+x
+x We planned to make major changes in everything -- a new operating
+x system, new compilers, a new user environment, new tools, and lots of
+x new features in the multi-media area.  Not only that, but the new stuff
+x was promised to do everything the old software had done, and with major
+x enhancements.  (Early warning:  version 6.0 promises to be even more
+x disruptive.)
+x
+x About 9 months ago, Rocky and I pointed out the impossibility of what
+x we were attempting.  Rather than reduce the scope of the projects, a
+x decision was made to hire a couple of contractors (who know nothing
+x about our system) to handle the worst user interface problems in the
+x Roxy project.  In addition, promises were obtained from various
+x executives that a significant effort would be made to improve software
+x performance.
+x
+x Management was basically afraid to cut any features, so we continued to
+x work on a project that was far too large.  The desperate attempt to do
+x everything caused programmers to cut corners, with disastrous effects
+x on the bug count.  And the bug count was high simply because 5.1 was so
+x big.
+x
+x Only when the situation was beyond hope of repair did we start to do
+x something.  Features and entire products were removed wholesale from the
+x release, and hundreds of high-priority bugs were classified as
+x exceptions, so that we could ship with "no priority 1 and 2 bugs".  We
+x did, however, ship with over 500 "exceptions".  The release was deemed
+x too crummy to push to all our machines, but was restricted to the
+x Indys, the high-end machines, and a few others where new hardware
+x required the new software.  Due to the massive bug count, virtually no
+x performance tuning was done.
+x
+x When the schedule is impossible as it was in 5.1, the release process
+x itself can get in the way.  The schedule imposes a code freeze long
+x before the software is stable, and fixing things becomes much more
+x difficult.  If you know you're going to be late, slip before the code
+x freeze, not after.  We're trying to wrap up the box before the stuff
+x inside is finished, and then trying to fix things inside the box
+x without undoing the wrapping -- it has to be less efficient.
+
+I think the 5.1 fiasco has caused a lot of our management to see the
+light, and in conversations with people at all levels, it's clear that
+nobody wants to see anything like it happen again.  The 5.2 and future
+5.3 releases seem to be steps in the right direction.
+
+But there's still a lot of work to do, and we in engineering can use
+every minute between now and the 5.3 release to improve things.
+
+The 5.3 release is being planned with reasonable beta-cycles, and with
+enough time between now and "code freeze" to make significant
+improvements.
+
+x Management Issues:
+x
+x There was never an overall software architect, and there still is not,
+x and until Way Ting was given the job near the end, there was no manager
+x in charge of the 5.1 release, either.
+x
+x I wrote a note in sgi.bad-attitude about the "optimist effect", which I
+x believe is mostly true.  In condensed form:
+x
+x     Optimists tend to be promoted, so the higher up in the organization
+x     you are, the more optimistic you tend to be.  If one manager says
+x     "I can do that in 4 months", and another only promises it in 6
+x     months, the 4 month guy gets the job.  When the software is 4 months
+x     late, the overall system complexity makes it easy to assign blame
+x     elsewhere, so there's no way to judge mis-management when it's time
+x     for promotions.
+x
+x     To look good to their boss, most people tend to put a positive spin
+x     on their reports.  With many levels of management and increasing
+x     optimism all the way up, the information reaching the VPs is very
+x     filtered, and always filtered positively.
+x
+x The problem is that the highly filtered estimates are completely out of
+x line with reality (at least in recent software plans here at SGI), and
+x there are no reality checks back from the VPs to the engineers on the
+x bottom.  I think it's great to have aggressive schedules where you try
+x to get things out 20% or so faster than you'd expect.  The problem is
+x that in 5.1, the engineers were expected to get things out 80% faster,
+x and it was clearly impossible, so many just gave up.
+x
+x We certainly didn't win any morale prizes among the engineers with
+x 5.1.  It's the first release here at SGI where most of the engineers I
+x talked to are ashamed of the product.  There are always a few, but this
+x time there were many.  When engineers were asked to come in over the
+x weekends before the 5.1 release to fix show-stopper bugs, I heard a
+x comment like: "Why bother?  SGI's going to release it anyway, whether
+x they're fixed or not."
+x
+x I'm not blaming the engineers.  Most of them worked their hearts out
+x for 5.1, and did the best they could, given the circumstances.  They'll
+x be happy to buy into a plan where there's a 20% stretch, but not where
+x there's an 80% stretch.  They figure: "It's hopeless, and I'll be late
+x anyway, and I'm not going to get rewarded for that, so why kill
+x myself?"
+x
+x Marketing - Engineering Disconnect
+x
+x           "Marketing -- where the rubber meets the sky."
+x
+x               -- Unknown
+x
+x There's a disconnect between engineering and marketing.  It's not
+x surprising -- marketing wants all the whiz-bang features, it wants to
+x run in 16 megabytes, and it wants it yesterday.  Although engineering
+x would like the same things, it is faced with the reality of time
+x limits, fixed costs, and the laws of nature.
+x
+x It's great to have pressure from marketing to do a better job, but at
+x SGI, we often seem to have deadlocks that are simply not resolved.
+x Marketing insists that Indy will work in 16 megabytes and engineering
+x insists that it won't, but both continue to make their plans without
+x resolving the conflict, so today we're shipping virtually useless 16 MB
+x systems.  Similarly for feature lists, reliability requirements, and
+x deadlines.
+x
+x Well, at least we met the deadline.
+
+I think this sort of disconnect is not too unusual -- there is always
+enormous pressure to announce a very low entry price-point, and the
+16MB system provided that.  Everybody does this with the full knowledge
+that on a minimum system, you won't be able to run many interesting
+applications, and almost everyone will have to purchase a bit more
+memory.  It's just that in the case of Indy, there were so many new
+features that the proposed minimal system was embarrassingly slow.
+
+The "fix" is simply not to ship the 16MB systems which will insure that
+everyone will get a very usable machine.  All we really lose is our low
+entry price point, and the gain is that we won't have to deal with the
+few irate customers who bought a minimal system.
+
+Although some of our performance loss is due to more complicated
+features, the vast majority is due to the fact that more memory is
+required, and without it, the systems page with a consequent dramatic
+reduction in performance.  The 4.0.X -> 5.X change on our large machines
+was measurable, but not nearly so noticeable as on the smaller ones.
+
+x     WHAT TO DO -- SHORT TERM (5.1.2)
+x
+x           "We should sell 'bloat credits', the way the government
+x           sells pollution credits.  Everybody's assigned a certain
+x           amount of bloat, and if they go over, they have to purchase
+x           bloat credits from some other group that's been more
+x           careful."
+x
+x               -- Bent Hagemark
+x
+x There are problems in both performance and bugs, and we'd like to fix
+x both.  In addition, the first thing we should do is decide exactly
+x what's going into release 5.1.2.
+x
+x If we are serious about a December all-platforms release, there may be
+x very little we can do other than keep stumbling along as we have been.
+x Three months isn't much time to do anything, considering the overhead
+x of a release, where perhaps half of the time will be spent in "code
+x freeze".  After 5.1, many engineers are exhausted, and it's
+x unreasonable to expect them to start hard work immediately.  500
+x outstanding priority 1 and 2 bugs is a huge list, and we haven't even
+x begun to hear about customer problems yet.
+x
+x What Should be in Release 5.1.2:
+x
+x I'm afraid the answer is going to be "everything that didn't make it
+x into 5.1".  I know that won't be the case, but I hope that we will
+x carefully select what goes in now, rather than hack things out in a
+x panic in December.  The default should be "not included", and we should
+x require a good reason to include things.  Let's make sure that there's a
+x minimal, solid, working set before we start adding frills.
+x
+x Improving Performance:
+x
+x           "SGI software has a cracked engine block, and we're trying
+x           to fix it with a tune-up."
+x
+x               -- Mark Segal
+x
+x As stated above, we don't even know exactly what's wrong.  We probably
+x never will, but we should start doing things that will have as much of
+x an impact on the problem as possible.  I don't think we have time to
+x study the problem in detail and then decide what to do -- we've got to
+x mix the research with doing something about it.
+x
+x Before we begin, we should have definite performance goals -- lose less
+x than 5% wall-clock time on compiles of some known program over 4.0.5,
+x have shells come up as fast as in 4.0.5, or whatever.
+x
+x Some people claim that we need new software debugging tools to look at
+x the problem, and that may be true, but it's not a short-term solution,
+x and it runs the risk of causing us to spend all our time designing
+x performance measurement tools, rather than fixing performance.
+x
+x In fact, I don't really believe that simple "tuning" will make a
+x large dent.  To get things to run significantly faster, we've got
+x to make significant changes.  And we can't beat the "5% rule" by just
+x speeding up all the systems by 5% -- if everything is exactly 5% faster,
+x the overall system will be exactly 5% faster.
+x
+x There's a strong tendency to look for the "quick fix".  "Get the code
+x re-arranger to work", or "Put all the non-modifiable strings in shared
+x code space", for example.  These ideas are attractive, since they
+x promise to speed up all the code, and they should probably be pursued,
+x but I think we're not going to make a lot of progress until we identify
+x the major software architectural problems and do some massive
+x simplification.  Remember that DSOs were the last "quick fix".
+x
+x There's got to be more to it than tuning; there must be some amazingly
+x bad software architecture -- from a novice's point of view, a 4 MB
+x Macintosh runs a far more efficient, interesting system than a 16 MB
+x Indy.  The Mark Segal quote above sums it up.
+x
+x Code walk-throughs and design reviews are in order for most of our
+x software.  The attendees should include not only people working in the
+x same area, but a small cross-section of experienced engineers from
+x other areas.  Get a pool of, say, 20 experienced engineers and
+x perhaps 3 at a time would sit in on code reviews together with the
+x other people working in that area.
+x
+x Code reviews will help in many ways -- the engineer presenting the code
+x will have to understand it thoroughly to present it, others will learn
+x about it, and outside observers will provide different ways to look at
+x the problems.
+x
+x The most important thing should be the focus -- we're trying to make
+x the code better and faster, not to make it more general, or have new
+x features, or be more reusable, or better structured.
+x
+x For complex problems, the walk-through should also include some general
+x design review.  Are these daemons really necessary?  Do we really need
+x this feature?  And so on.
+x
+x Fixing Bugs:
+x
+x The code walk-throughs will obviously tend to turn up some bugs, so
+x they'll serve a dual purpose.
+x
+x With 500 or so priority 1 and 2 bugs, we must prioritize these as
+x well.  A bug that causes a system crash only on machines with some rare
+x hardware configuration is properly classified priority 1, but it's
+x probably less important than a bug in a popular program like Showcase
+x that causes you to lose your file every tenth time, which would
+x normally rank as priority 2.  The effort involved in the fix should
+x also be taken into account.  For bugs of equal frequency of occurrence,
+x it's probably better to fix 20 priority 2 bugs than 1 priority 1 bug if
+x the priority 2 bugs are 20 times easier to fix.
+x
+x A bunch of bugs can be eliminated by getting rid of features.  Let's
+x have the courage to cut some of the fat.
+x
+x     WHAT TO DO -- LONG TERM
+x
+x           "Software quality is not a crime."
+x
+x               -- Unknown (seen on a poster in building 7)
+x
+x
+x It's easy to go on forever here, but I'll try to limit it to a few key
+x ideas.  We don't have to do all these at once, but we'd better start.
+x
+x     Have an overall SGI software plan.
+x
+x     Let's get an architect, or at least a small group of highly
+x     technical people, not just managers, to agree on plans for
+x     releases.  In fact, since the release is a company-wide project,
+x     there ought to be company-wide participation in the decisions of
+x     what's in a release.  The group should include marketing,
+x     documentation, engineering, and management and should come up with
+x     a compromise that's reasonable to all.
+x
+x     In every case, some attempt must be made to check reasonableness
+x     all the way to the bottom.  There's a long series of excuses,
+x     "Well, that's what my junior VPs told me.", or  "That's what my
+x     directors/managers/lead engineers/engineers told me."  We get
+x     killed by the optimist effect, and a disinclination to listen
+x     seriously to anyone but our direct reports.  Try to imagine the
+x     guts it takes for an engineer to go to his director and say: "My
+x     manager's out of his mind -- I can't possibly do what he's
+x     promised."
+x
+x     Let's try to concentrate on performance and quality, not on new
+x     features, especially for the 5.1.2 release.  I know from my own
+x     experience that when I write good code, I spend 10% of the time
+x     adding features, and 90% debugging and tuning them.  It's the only
+x     way to make quality software.  In SGI's recent releases, the
+x     opposite proportions are often the rule.  It's much easier to add
+x     100 really neat features that don't work than to speed up
+x     performance by 1%.
+x
+x     Aim for simplicity in design, not complexity.  Make a few things
+x     work really well; don't have 1000 flaky programs.
+x
+x     Be willing to cut features; who's going to be more pissed off:  a
+x     customer who was promised a feature that doesn't appear, or the
+x     same customer who gets the promised feature, and after months of
+x     struggling with it, discovers he can't make it work?
+x
+x     Get better agreement between the top level VPs and the lowest
+x     engineers that a given schedule is reasonable.
+x
+x     For new development, continue the formal design reviews and code
+x     walk-throughs.  These shouldn't just happen once in the development
+x     cycle -- things are bound to change, and code reviews can be very
+x     valuable, even for our experienced programmers.
+x
+x     ACKNOWLEDGEMENTS
+x
+x I take full responsibility for the opinions contained herein, but I'd
+x like to thank Mark Segal, Rosemary Chang, Mary Ann Gallager, Jackie
+x Neider, Sharon Fischler, Henry Moreton, and Jon Livesey for suggestions
+x and comments.
+
+We're still not completely there (as far as I can tell) with respect to
+better software management.  The good thing is that many of our
+higher-level managers are acutely aware of the problem now -- Forest
+Baskett and Tom Jermoluk are extremely concerned, for example.
+
+It's too bad it took a shock like 5.1 to make everybody take notice, but
+at least they did, and we're doing the right sorts of things to correct it. 

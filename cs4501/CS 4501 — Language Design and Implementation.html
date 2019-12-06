@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>CS 4501 — Language Design and Implementation</title>
+   <link href="./CS 4501 — Language Design and Implementation_files/bootstrap.min.css" rel="stylesheet">
+   <link href="./CS 4501 — Language Design and Implementation_files/starter-template.css" rel="stylesheet">
+</head> 
+
+    <body><nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://web.eecs.umich.edu/~weimerw/2016-ldi/index.html">Language Design &amp; Implementation</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li class="active"><a href="#">Home</a></li> --> 
+            <li class="active"><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures.html">Lectures</a></li>
+            <li class="dropdown">
+                <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Assignments <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/pa1.html">PA1 — Rosetta</a></li> 
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/pa2.html">PA2 — Lexer</a></li> 
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/pa3.html">PA3 — Parser</a></li> 
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/pa4.html">PA4 — Semantic Analyzer</a></li> 
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/pa5.html">PA5 — Interpreter</a></li> 
+                  <li class="divider"></li> 
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/ca1.html">CA1 — Dead Code Elimination</a></li>
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/ca2.html">CA2 — TAC Code Generator</a></li>
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/ca3.html">CA3 — Assembly Generator</a></li>
+                  <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/ca4.html">CA4 — Compiler</a></li>
+                  <li class="divider"></li>
+                 <li><a href="https://dijkstra.cs.virginia.edu/ldi-submit/index.html">Project Submission</a></li> 
+                </ul>
+            </li> 
+            <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/exams.html">Exams</a></li>
+            <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/cool.html">Cool</a></li>
+            <li><a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/legacy.html">Legacy</a></li>
+            <li><a href="https://piazza.com/class/ijen7n8b3bi1tc">Forum</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+
+
+<div class="container">
+<div class="starter-template">
+
+<h1>Lectures</h1> 
+
+<table class="table table-hover">
+<thead>
+  <tr>
+  <th> Date </th> 
+  <th> Topic and Notes </th>
+  <th> Homework Due <i>This</i> Class </th> 
+  <th> Reading For <i>This</i> Class </th> 
+</tr></thead> 
+<tbody> 
+
+<tr><td> Thu Jan 21
+﻿
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-01.pdf">Course Overview</a>
+</td><td> 
+</td><td> 
+
+
+
+</td></tr><tr><td> Tue Jan 26
+
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-02.pdf">
+History of PL
+<br>
+Functional Programming
+</a> 
+</td><td> 
+</td><td> 
+
+Required:
+<ul>
+<li>
+Chapters 10.1 - 10.3, 10.5 - 10.8, 13.2.4
+</li></ul>
+<font color="orange">Required for Compilers Only</font>:
+<ul>
+<li> Chapter 14.1 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/14a_imdfm.pdf">CD Chapter 14.2</a> 
+</li></ul> 
+Optional:
+<ul>
+<li>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/ThePerilsofJavaSchools.html">Joel Spolsky's <i>The Perils
+of JavaSchools</i></a> 
+</li></ul>
+
+
+
+</td></tr><tr><td> Thu Jan 28
+
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-03.pdf">
+Functional Programming
+<br>
+Overview of Cool
+</a>
+
+</td><td> 
+<ol>
+<li> <font color="yellow">PA1c (Rosetta Checkpoint) Due</font> 
+</li></ol> 
+
+</td><td> 
+
+Required: 
+<ul>
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/cool-manual/cool-manual.html">The Cool Reference Manual</a> 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/7a_mltyp.pdf">CD Chapter 7.2.4</a> 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/backus-speedcoding.pdf">
+J. W. Backus. <i>Speedcoding.</i> Journal of the ACM 1(1) pp. 4-6, 1954.
+</a> 
+</li></ul> 
+
+Optional:
+<ul>
+<li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/10a_thfnd.pdf">CD Chapter 10.6</a> 
+</li></ul> 
+ 
+<font color="orange">Required for Compilers Only</font>:
+<ul>
+<li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/16a_cdsec.pdf">CD Chapter 16 - 16.4</a> 
+</li></ul> 
+
+
+
+</td></tr><tr><td> Tue Feb 02
+
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-04.pdf">
+Lexical Analysis &amp; Finite Automata (Part 1)
+</a> 
+</td><td> 
+<ol>
+<li> <font color="yellow">PA1 (Rosetta) Due</font> 
+</li></ol>
+</td><td> 
+Required:
+<ul>
+<li> Chapters 2.1 - 2.2
+</li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 1</i></a> 
+  <ul> <li> "Breaking up Strings" to "Hyphenation" 
+  </li></ul> 
+</li><li> <a href="https://www.udacity.com/course/cs259">Zeller's <i>Udacity CS
+259 — Software Debugging</i> — Lesson 3</a> 
+  <ul>
+    <li> Simplifying Failures, Implementing the Strategy, Delta Debugging.
+    (If you can't find these exact names, watch the videos for
+    comprehension until you're confident that you've covered similar
+    topics.) 
+  </li></ul>
+
+</li></ul>
+Optional:
+<ul>
+
+<li>
+<a href="http://www.whyprogramsfail.com/">Andreas Zeller. <i>Why programs
+fail: a guide to systematic debugging.</i></a> Part of the
+<a href="http://www.st.cs.uni-saarland.de/dd/">Delta Debugging</a> project.
+
+</li><li> 
+<a href="http://www.cs.utexas.edu/users/EWD/transcriptions/EWD04xx/EWD498.html">
+Edsger Dijkstra. <i>How do we tell truths that might hurt?</i> EWD498, 1975.</a> 
+</li><li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/p157-landin.pdf">P. J. Landin. <i>The next 700
+programming languages</i>. Communications of the ACM 9(3) pp. 157-166,
+1966.</a> 
+</li></ul> 
+
+
+
+</td></tr><tr><td> Thu Feb 04
+
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-05.pdf">
+More Finite Automata (Part 2)
+</a> 
+</td><td> 
+
+</td><td> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 1</i></a> 
+  <ul> <li> "Tricky" to "Nondet to Det" 
+  </li></ul> 
+</li></ul> 
+<font color="orange">Required for Compilers Only</font>:
+<ul>
+<li> Chapter 14.2 
+</li></ul> 
+
+
+
+</td></tr><tr><td> Tue Feb 09
+
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-06.pdf">
+Context-Free Grammars, Parsing, Derivations, Ambiguity
+</a>
+</td><td> 
+<ol>
+<li> <font color="yellow">RS1 Recommended</font>
+</li><li> <font color="yellow">PA2 (Lexing) Due</font> 
+</li><li> <font color="orange">CA1 (Dead Code) Due</font> 
+</li></ol>
+</td><td>
+Required:
+<ul>
+<li> Chapters 2.4 - 2.4.1 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/2b_theor.pdf">CD Chapters 2.4 - 2.4.1</a> 
+</li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 2</i></a> 
+  <ul> <li> "Specification" to "It Could Be Worse" 
+  </li></ul> 
+</li></ul>
+
+
+
+</td></tr><tr><td> Thu Feb 11
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-earley-01.pdf">
+Top-Down Parsing, History, Earley
+</a> 
+<br>
+(<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/earley-handout.pdf">Earley Handout</a>)
+  </td><td> 
+  <ol>
+  <li>
+  (Start PA3 early; look at the Midterm schedule to see why.) 
+  </li></ol> 
+  </td><td> 
+Required:
+<ul>
+<li>
+Chapters 2.3 - 2.3.2
+</li></ul>
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 3</i></a> 
+  <ul> <li> "Bag of Words" to "Expanding Exp" 
+  </li></ul> 
+</li></ul>
+Optional: 
+<ul>
+<li> 
+<a href="http://en.wikipedia.org/wiki/LL_parsing">Wikipedia's <i>LL
+Parsing</i></a> 
+</li><li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/RemovingLeftRecursion.pdf">Mike Clark's <i>Removing Left
+Recursion</i></a> 
+</li><li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/FirstFollowLL.pdf">Robert Ball's <i>First Sets, Follow
+Sets and LL(1) Tables</i></a> 
+</li></ul> 
+
+
+
+</td></tr><tr><td> Tue Feb 16
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-earley-02.pdf">
+Earley Parsing and Examples
+</a> 
+  </td><td> 
+  <ol>
+  <li>
+  <font color="yellow">RS2 Recommended</font>
+  </li></ol> 
+  </td><td> 
+Required:
+<ul>
+<li> Chapter 2.3.3
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/earley.zip"><tt>earley.py</tt> — a
+classroom Earley parser</a> 
+</li></ul>
+<font color="orange">Required for Compilers Only</font>:
+<ul>
+<li> Chapters 14.3 and 14.5
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/5a_cdsec.pdf">CD Chapters 5 - 5.3.2</a> 
+</li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 4</i></a> 
+  <ul> <li> "Time Flies" to "Setting Precedence" 
+  </li></ul> 
+</li></ul>
+Optional:
+<ul>
+<li> <a href="http://en.wikipedia.org/wiki/Earley_parser">Wikipedia's
+<i>Earley Parsing</i></a> 
+</li><li> <a href="http://en.wikipedia.org/wiki/LR_parser">Wikipedia's <i>LR
+Parsing</i></a> 
+</li></ul> 
+
+
+
+
+</td></tr><tr><td> Thu Feb 18
+
+
+</td><td> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/exams.html"><font color="red">Midterm 1 (in class)
+<br>
+(1 hour 30 minutes if needed)
+</font></a>
+</td><td> 
+<ol>
+  <li> (Do not forget PA3.)
+  </li></ol> 
+</td><td> 
+
+
+
+
+</td></tr><tr><td> Tue Feb 23
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-10.pdf">
+Code Generation (Part 1)</a> 
+</td><td>
+<ol>
+<li> <font color="yellow">RS3 Recommended</font>
+</li><li> <font color="yellow">PA3 (Parsing) Due</font>
+</li></ol> 
+</td><td> 
+
+Required:
+<ul>
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/cool-manual/cool-manual.html">The Cool Reference Manual</a>
+(no, really)
+</li></ul>
+<font color="orange">Required for Compilers Only</font>:
+<ul>
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/usc-code-gen.pdf">USC CS 410 Lecture Notes: "Code
+Generation for a Stack Machine"</a> 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/5a_cdsec.pdf">CD Chapter 5.4</a> 
+</li></ul> 
+
+
+
+
+</td></tr><tr><td> Thu Feb 25
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-10.pdf">
+Code Generation (Part 2)</a> 
+</td><td>
+<ol>
+<li> <font color="orange">CA2 (Three-Address) Due</font> 
+</li></ol>
+</td><td>
+<font color="orange">Required for Compilers Only</font>:
+<ul>
+<li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/8b_csstd.pdf">CD Chapter 8.2.2</a> 
+</li></ul> 
+
+
+
+
+
+</td></tr><tr><td> Tue Mar 01
+
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-11.pdf">
+Scoping &amp; Types
+</a> 
+  </td><td> 
+  <ol>
+<li> <font color="yellow">PA4t (Semantics Test-Driven) Due</font>
+</li></ol> 
+
+  </td><td> 
+
+Required:
+<ul>
+<li> Chapters 3.1 - 3.6
+</li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 5</i></a> 
+  <ul> <li> "Formal Semantics" to "Conclusion" 
+  </li></ul> 
+</li></ul>
+<font color="orange">Required for Compilers Only:</font>
+<ul> 
+<li> <a href="http://en.wikipedia.org/wiki/Virtual_table">
+Wikipedia's <i>Virtual method table</i></a> 
+</li></ul> 
+Optional:
+<ul>
+<li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/3a_impsc.pdf">CD Chapters 3.4 - 3.4.2</a> 
+</li><li> <a href="http://en.wikipedia.org/wiki/Scope_%28programming%29">
+Wikipedia's <i>Scope (programming)</i></a> 
+</li></ul> 
+
+
+
+
+</td></tr><tr><td> Thu Mar 03
+
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-type-checking.pdf">
+Type Checking &amp; Static Semantics
+<!--
+<br>
+<font color=red>Guest Lecture: Claire Le&nbsp;Goues</font> 
+--> 
+</a></td><td>
+<ol>
+<li> <font color="yellow">PA4c (Semantics Checkpoint) Recommended</font>
+(leaving it until after Spring Recess is unwise)
+</li><li> <font color="orange">CA3 (ASM Generator) Due</font> 
+</li></ol> 
+  </td><td> 
+
+Required:
+<ul>
+<li> Chapters 4 - 4.1, 7 - 7.1 
+</li></ul>
+<font color="orange">Required for Compilers Only:</font>
+<ul> 
+<li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/5a_cdsec.pdf">CD Chapter 5.5 - 5.6</a> 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/16a_cdsec.pdf">CD Chapter 16.5 - 16.9</a> 
+</li></ul> 
+Optional: 
+<ul>
+<li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/Cardelli_TypeSystems.pdf">Luca Cardelli's <i>Type
+Systems</i></a> (recommended) 
+</li></ul>
+
+
+
+</td></tr><tr><td> Tue Mar 08
+
+
+</td><td>
+<i>no class, Spring Recess</i> 
+
+
+
+
+</td></tr><tr><td> Thu Mar 10
+
+
+</td><td>
+<i>no class, Spring Recess</i> 
+
+
+
+
+</td></tr><tr><td> Tue Mar 15
+
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-12.pdf">
+More Static Semantics
+</a> 
+
+  </td><td> 
+<ol>
+<li> <font color="yellow">PA4c (Semantics Checkpoint) Due</font>
+</li></ol> 
+  </td><td> 
+
+Required:
+<ul>
+<li> Chapters 7.2 - 7.3
+</li></ul>
+Optional:
+<ul> 
+<li> <a href="http://en.wikipedia.org/wiki/Type_checking">
+Wikipedia's <i>Type system</i></a>  
+</li></ul> 
+
+
+
+</td></tr><tr><td> Thu Mar 17
+
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-13.pdf">
+Cool Type Checking, Runtime Organization
+</a>
+  </td><td> 
+  <ol>
+  <li> 
+  <font color="yellow">RS4 Recommended</font>
+  </li></ol> 
+  </td><td> 
+
+Required: 
+<ul>
+<li> Chapters 8.1 - 8.3
+</li></ul> 
+Optional: 
+<ul>
+<li> Chapter 6 of 
+<a href="https://pl.cs.jhu.edu/pl/book/dist/book/book.pdf">
+Grant, Palmer &amp; Smith's <i>Princples of Programming Languages</i></a> 
+for an alternate presentation of Types (e.g., for exam review) 
+</li><li> Chapter 8 of 
+<a href="https://pl.cs.jhu.edu/pl/book/dist/book/book.pdf">
+Grant, Palmer &amp; Smith's <i>Princples of Programming Languages</i></a> 
+for an alternate presentation of compilation and memory layout (e.g., for exam review) 
+</li></ul> 
+
+
+
+</td></tr><tr><td> Tue Mar 22
+
+</td><td>
+<u>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-multi-lang.pdf">Multi-Language Projects</a>
+
+</u></td><td>
+
+  <ol>
+  <li> <font color="yellow">PA4 (Semantics) Due
+  </font></li></ol><font color="yellow">
+
+</font></td><td> 
+Required:
+  <ul>
+  <li> 
+  <a href="http://en.wikipedia.org/wiki/Java_Native_Interface">Wikipedia's
+  <i>Java Native Interface</i></a> 
+  </li><li> 
+  <a href="http://docs.python.org/2/extending/extending.html">Python's 
+  <i>Extending Python with C or C++</i></a> 
+  </li></ul>
+Optional:
+  <ul>
+  <li> <a href="http://caml.inria.fr/pub/docs/manual-ocaml/intfc.html">OCaml's
+  <i>Interfacing C with OCaml</i></a> 
+  </li></ul> 
+
+
+
+
+</td></tr><tr><td> Thu Mar 24
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-14.pdf">
+Operational Semantics
+</a>
+  </td><td> 
+<!--  <ol>
+  <li> <font color=orange>CA4t (Compiler Test-Driven) Due
+  </ol> -->
+  </td><td> 
+
+Required:
+<ul>
+<li> Chapters 9 - 9.4
+</li><li> Chapters 2 - 2.2.3 and 2.3.3 of 
+<a href="https://pl.cs.jhu.edu/pl/book/dist/book/book.pdf">
+Grant, Palmer &amp; Smith's <i>Princples of Programming Languages</i></a> 
+</li></ul> 
+Optional:
+<ul>
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/stroustrup-oo.pdf">
+Bjarne Stroustrup. <i>What is "Object-Oriented Programming"?</i>. 1991</a> 
+</li><li> 
+<a href="http://en.wikipedia.org/wiki/Object-oriented_programming">
+Wikipedia's <i>Object-oriented programming</i></a> 
+</li></ul> 
+
+
+
+</td></tr><tr><td> Tue Mar 29
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-game-theory-intro.pdf">
+Introduction to Game Theory</a>
+</td><td> 
+<ol>
+  <li> <font color="yellow">PA5t (Interpreter Test-Driven) Due</font>
+</li></ol>
+</td><td> 
+
+Optional: 
+<ul>
+<li> 
+<a href="http://en.wikipedia.org/wiki/Game_theory">Wikipedia's <i>Game Theory</i></a> 
+</li></ul>
+
+
+
+
+</td></tr><tr><td> Thu Mar 31
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-15.pdf">
+Basic Blocks, Local Optimizations</a> 
+<br>
+<font color="red">Real-World Day (5pm)</font> 
+
+  </td><td> 
+  <ol>
+  <li> 
+  <font color="yellow">RS5 Recommended</font>
+  </li></ol> 
+  </td><td> 
+  Required: 
+  <ul>
+  <li> 
+  <a href="http://en.wikipedia.org/wiki/Basic_block">
+  Wikipedia's <i>Basic block</i></a> 
+  </li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 6</i></a> 
+  <ul> <li> "Optimization" to "Wrap Up" 
+  </li></ul> 
+</li></ul>
+
+
+
+</td></tr><tr><td> Tue Apr 05
+
+</td><td>
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-16.pdf">
+Dataflow Analysis, Global Optimizations</a>
+  </td><td>
+  </td><td> 
+  Required: 
+  <ul>
+  <li> 
+  <a href="http://en.wikipedia.org/wiki/Dataflow_analysis">
+  Wikipedia's 
+  <i>Data-flow analysis</i></a>
+  </li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/16a_cdsec.pdf">CD Chapter 16 - 16.4</a> 
+  </li></ul> 
+
+
+
+</td></tr><tr><td> Thu Apr 07
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-17.pdf">
+Automatic Memory Management</a> 
+<br>
+<font color="red">Productivity (5pm)</font> 
+
+  </td><td> 
+  <ol>
+  <li> 
+  <font color="yellow">RS6 Recommended</font>
+  </li><li> <font color="orange">CA4 (Compiler) Due
+  </font></li></ol><font color="orange"> 
+  </font></td><td> 
+  Required: 
+  <ul>
+  <li> Chapter 7.7
+  </li><li> See Piazza forum for required 
+<font color="red">Productivity</font> readings
+  </li></ul> 
+  Optional: 
+  <ul>
+  <li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/bacon-garbage.pdf">David F. Bacon, Perry Cheng, V. T.
+Rajan. <i>A unified theory of garbage collection</i>. In Object-Oriented Programming Systems, Languages and Applications, pp. 50-68, 2004.</a> 
+<br>
+</li></ul> 
+
+
+
+</td></tr><tr><td> Tue Apr 12
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-18.pdf">
+Exceptions and Error Handling</a> 
+
+</td><td>
+</td><td>
+Required:
+<ul>
+  <li> Chapter 8.5
+</li></ul> 
+
+
+
+</td></tr><tr><td> Thu Apr 14
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-19.pdf">
+Debuggers and Profilers </a> 
+  </td><td> 
+  <ol>
+  <li> 
+  <font color="yellow">RS7 Recommended</font>
+  </li><li> 
+  <font color="yellow">PA5c (Interpreter Checkpoint) Due</font>
+  </li></ol> 
+  </td><td>
+  Required: 
+  <ul>
+  <li> Chapters 15.3.2 and 15.3.3
+  </li><li> 
+  <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/graham-gprof.pdf">Susan L. Graham, Peter B. Kessler,
+  Marshall K. McKusick. <i><tt><b>gprof</b></tt>: a call graph execution
+  profiler</i>. In Best of Programming Languages Design and Implementation 1979-1999, pp. 49-57, 2004.</a> 
+  </li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 6</i></a> 
+  <ul> <li> "Web Browser Architecture" to "Debugging in the Real World" 
+  </li></ul> 
+</li></ul>
+
+
+
+</td></tr><tr><td> Tue Apr 19
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-20.pdf">
+Linking, Loading and Shared Libraries </a> 
+</td><td>
+</td><td>
+Required:
+<ul>
+<li> Chapters 14.4 and 14.6
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/3b_spcom.pdf">CD Chapter 3.8</a> 
+</li><li> <a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/scottcd/14b_dynlk.pdf">CD Chapter 14.7</a> 
+</li></ul> 
+Optional: 
+<ul> 
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/irix-bloat.txt"><i>Software Usability II</i> by Tom
+Davis</a> (a description of how software engineering (and shared
+libaries, called "DSO"s) played out as 
+<a href="http://en.wikipedia.org/wiki/Silicon_Graphics">Silicon Graphics</a>
+was developing the
+<a href="http://en.wikipedia.org/wiki/IRIX">IRIX Operating System</a> 
+for the
+<a href="http://en.wikipedia.org/wiki/SGI_Indy">SGI Indy workstation</a>)
+</li></ul> 
+
+
+
+</td></tr><tr><td> Thu Apr 21
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-21.pdf">
+Language Security </a>
+
+  </td><td> 
+  </td><td>
+
+Required:
+<ul>
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/smash.txt">Aleph One. <i>Smashing The Stack For Fun And
+Profit</i>. In Phrack 7(49):14, 1996.</a> 
+</li></ul> 
+
+
+
+
+</td></tr><tr><td> Tue Apr 26
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/exams.html"><font color="red">Midterm 2 (in class)
+<br>
+(1 hour 30 minutes if needed)
+</font></a> 
+</td><td>
+</td><td>
+
+
+
+
+</td></tr><tr><td> Thu Apr 28
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-22.pdf">
+Internet Security</a> 
+</td><td>
+</td><td>
+Required:
+<ul>
+<li> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/reading/KenThompson-ReflectionsOnTrustingTrust.pdf">Ken Thompson.
+<i>Reflections on Trusting Trust</i>. ACM Turing Award Speech.</a>
+</li></ul> 
+On-Line:
+<ul>
+<li> <a href="https://www.udacity.com/course/cs262">Weimer's <i>Udacity CS 262 — Programming Languages — Lesson 7</i></a> 
+  <ul> <li> "Final Unit" to "Victory" 
+  </li></ul> 
+</li></ul>
+
+
+
+</td></tr><tr><td> Tue May 03
+
+</td><td> 
+<a href="https://web.eecs.umich.edu/~weimerw/2016-ldi/lectures/weimer-ldi-qcomp-rom.pdf">
+Quantum Computing,
+and/or Romance Novels</a> 
+</td><td>
+</td><td>
+
+
+
+</td></tr><tr><td> Tue May 10 
+
+</td><td>
+</td><td>
+<ol>
+<li> 
+<font color="yellow">PA5 (Interpreter) Due 11:50pm</font> 
+</li><li> 
+<font color="orange">CA5 (Optimizer) Due 11:50pm</font> 
+</li><li> 
+<font color="red">Late Electronic/PA Submissions Due 11:50pm</font> 
+</li></ol> 
+
+
+</td></tr></tbody>
+
+</table>
+
+</div>
+</div> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="./CS 4501 — Language Design and Implementation_files/bootstrap.min.js.download"></script>
+
+
+
+
+</body></html>
